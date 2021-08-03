@@ -160,15 +160,16 @@ class _CovidDetailsState extends State<CovidDetails> {
           padding: EdgeInsets.all(15),
           width: double.infinity,
           decoration: BoxDecoration(
-              color: Colors.green[50],
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                BoxShadow(
-                    color: Colors.grey[400],
-                    offset: Offset(0, 2),
-                    spreadRadius: -1,
-                    blurRadius: 9)
-              ]),
+            color: Colors.green[50],
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                  color: Colors.grey[400],
+                  offset: Offset(0, 2),
+                  spreadRadius: -1,
+                  blurRadius: 9)
+            ],
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -202,11 +203,11 @@ class _CovidDetailsState extends State<CovidDetails> {
                   Text(
                     'Last Updated on\n${getFormattedDate(widget.updated, 'hh:mm a')}',
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.ubuntu(
+                    style: GoogleFonts.nunito(
                       textStyle: TextStyle(
                         color: Colors.teal[300],
-                        fontSize: 24.0,
-                        fontWeight: FontWeight.w600,
+                        fontSize: 22.0,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                   ),
@@ -218,12 +219,12 @@ class _CovidDetailsState extends State<CovidDetails> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CovidInfoCard(
-                    title: 'Total\nCases',
+                    title: 'Total Cases',
                     data: widget.cases,
                     color: Colors.brown[600],
                   ),
                   CovidInfoCard(
-                    title: 'Total\nRecovered',
+                    title: 'Total Recovered',
                     data: widget.recovered,
                     color: Colors.blue[900],
                   ),
@@ -235,12 +236,12 @@ class _CovidDetailsState extends State<CovidDetails> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CovidInfoCard(
-                    title: 'Cases\nToday',
+                    title: 'Cases Today',
                     data: widget.casesToday,
                     color: Colors.black,
                   ),
                   CovidInfoCard(
-                    title: 'Recovered\nToday',
+                    title: 'Recovered Today',
                     data: widget.recoveredToday,
                     color: Colors.green[900],
                   ),
@@ -252,12 +253,12 @@ class _CovidDetailsState extends State<CovidDetails> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CovidInfoCard(
-                    title: 'Total\nDeaths',
+                    title: 'Total Deaths',
                     data: widget.deaths,
                     color: Colors.red[500],
                   ),
                   CovidInfoCard(
-                    title: 'Deaths\nToday',
+                    title: 'Deaths Today',
                     data: widget.todayDeaths,
                     color: Colors.red[900],
                   ),

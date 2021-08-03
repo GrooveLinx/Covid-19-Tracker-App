@@ -6,9 +6,13 @@ class WorldCovidInfo extends StatelessWidget {
   final String imagePath;
   final Color color;
   final String data;
-  const WorldCovidInfo(
-      {Key key, this.title, this.imagePath, this.color, this.data,})
-      : super(key: key);
+  const WorldCovidInfo({
+    Key key,
+    this.title,
+    this.imagePath,
+    this.color,
+    this.data,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +31,7 @@ class WorldCovidInfo extends StatelessWidget {
                 blurRadius: 10)
           ],
         ),
-        height: MediaQuery.of(context).size.height * .30,
+        height: MediaQuery.of(context).size.height * .35,
         width: MediaQuery.of(context).size.width * .40,
         child: Column(
           children: [
@@ -45,8 +49,8 @@ class WorldCovidInfo extends StatelessWidget {
             Spacer(),
             Image.asset(
               imagePath,
-              height: MediaQuery.of(context).size.height * .12,
-              width: MediaQuery.of(context).size.width * .24,
+              height: MediaQuery.of(context).size.height * .15,
+              width: MediaQuery.of(context).size.width * .25,
               fit: BoxFit.cover,
             ),
             Spacer(),

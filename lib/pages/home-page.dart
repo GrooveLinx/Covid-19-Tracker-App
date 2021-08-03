@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:covid19_app/pages/details-page.dart';
+import 'package:covid19_app/pages/developer-page.dart';
 import 'package:covid19_app/provider/covid-provider.dart';
 import 'package:covid19_app/widgets/show-world-info.dart';
 import 'package:flutter/material.dart';
@@ -144,6 +145,23 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ),
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.developer_board,
+              color: Colors.blueGrey,
+              size: 30.0,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => DeveloperPage(),
+                ),
+              );
+            },
+          ),
+        ],
       ),
       body: isLoading
           ? Center(
@@ -238,7 +256,7 @@ class _HomePageState extends State<HomePage> {
                                           height: MediaQuery.of(context)
                                                   .size
                                                   .height *
-                                              .30,
+                                              .35,
                                           child: Consumer<CovidDataProvider>(
                                             builder: (context, proObj, _) =>
                                                 ListView(
@@ -347,7 +365,7 @@ class _HomePageState extends State<HomePage> {
                                           height: MediaQuery.of(context)
                                                   .size
                                                   .height *
-                                              .2,
+                                              .185,
                                           width: double.infinity,
                                           margin: EdgeInsets.only(
                                             top: 12.0,
