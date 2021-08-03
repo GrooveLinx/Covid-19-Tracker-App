@@ -153,6 +153,7 @@ class _HomePageState extends State<HomePage> {
               size: 30.0,
             ),
             onPressed: () {
+              _showInterstitialAd();
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -319,7 +320,9 @@ class _HomePageState extends State<HomePage> {
                                     padding: EdgeInsets.only(
                                       top: 5,
                                     ),
-                                    itemCount: countryData.length,
+                                    itemCount: countryData.length == null
+                                        ? 1
+                                        : countryData.length,
                                     itemBuilder:
                                         (BuildContext context, int index) {
                                       return InkWell(
@@ -394,16 +397,29 @@ class _HomePageState extends State<HomePage> {
                                                           .spaceAround,
                                                   children: [
                                                     Image.network(
-                                                      countryData[index]
-                                                              ['countryInfo']
-                                                          ['flag'],
+                                                      countryData[index][
+                                                                      'countryInfo']
+                                                                  ['flag'] ==
+                                                              null
+                                                          ? Icon(
+                                                              Icons.flag,
+                                                              size: 40.0,
+                                                              color: Colors
+                                                                  .blueGrey,
+                                                            )
+                                                          : countryData[index][
+                                                                  'countryInfo']
+                                                              ['flag'],
                                                       height: 60,
                                                       width: 60,
                                                     ),
                                                     Column(
                                                       children: [
                                                         Text(
-                                                          '${countryData[index]['country']}',
+                                                          '${countryData[index]['country']}' ==
+                                                                  null
+                                                              ? 'loading...'
+                                                              : '${countryData[index]['country']}',
                                                           style: GoogleFonts
                                                               .ubuntu(
                                                             textStyle:
@@ -419,8 +435,6 @@ class _HomePageState extends State<HomePage> {
                                                           ),
                                                           overflow: TextOverflow
                                                               .ellipsis,
-                                                          maxLines: 2,
-                                                          softWrap: true,
                                                         ),
                                                         SizedBox(
                                                           height: 15,
@@ -434,7 +448,10 @@ class _HomePageState extends State<HomePage> {
                                                               child: Row(
                                                                 children: [
                                                                   Text(
-                                                                    'Cases : ${countryData[index]['cases']}',
+                                                                    'Cases : ${countryData[index]['cases']}' ==
+                                                                            null
+                                                                        ? 'loading'
+                                                                        : 'Cases : ${countryData[index]['cases']}',
                                                                     style: GoogleFonts
                                                                         .poppins(
                                                                       textStyle:
@@ -458,7 +475,10 @@ class _HomePageState extends State<HomePage> {
                                                                     width: 15,
                                                                   ),
                                                                   Text(
-                                                                    'Deaths : ${countryData[index]['deaths']}',
+                                                                    'Deaths : ${countryData[index]['deaths']}' ==
+                                                                            null
+                                                                        ? 'loading'
+                                                                        : 'Deaths : ${countryData[index]['deaths']}',
                                                                     style: GoogleFonts
                                                                         .poppins(
                                                                       textStyle:
@@ -484,7 +504,10 @@ class _HomePageState extends State<HomePage> {
                                                           height: 10,
                                                         ),
                                                         Text(
-                                                          'Recovered : ${countryData[index]['recovered']}',
+                                                          'Recovered : ${countryData[index]['recovered']}' ==
+                                                                  null
+                                                              ? 'loading'
+                                                              : 'Recovered : ${countryData[index]['recovered']}',
                                                           style: GoogleFonts
                                                               .poppins(
                                                             textStyle:

@@ -141,18 +141,17 @@ class _CovidDetailsState extends State<CovidDetails> {
               );
             },
           ),
-          title: Flexible(
-            child: Text(
-              '${widget.countryName} Covid Updates',
-              style: GoogleFonts.ubuntu(
-                textStyle: TextStyle(
-                  color: Colors.blueGrey[600],
-                  fontSize: 22.0,
-                  fontWeight: FontWeight.w600,
-                ),
+          title: Text(
+            '${widget.countryName} Covid Updates',
+            textAlign: TextAlign.left,
+            style: GoogleFonts.ubuntu(
+              textStyle: TextStyle(
+                color: Colors.blueGrey[600],
+                fontSize: 22.0,
+                fontWeight: FontWeight.w600,
               ),
-              overflow: TextOverflow.ellipsis,
             ),
+            overflow: TextOverflow.ellipsis,
           ),
         ),
         body: Container(
@@ -185,6 +184,7 @@ class _CovidDetailsState extends State<CovidDetails> {
                   Flexible(
                     child: Text(
                       '${widget.countryName}',
+                      textAlign: TextAlign.center,
                       style: GoogleFonts.ubuntu(
                         textStyle: TextStyle(
                           color: Colors.blueGrey[600],
