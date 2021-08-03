@@ -151,6 +151,7 @@ class _CovidDetailsState extends State<CovidDetails> {
                   fontWeight: FontWeight.w600,
                 ),
               ),
+              overflow: TextOverflow.ellipsis,
             ),
           ),
         ),

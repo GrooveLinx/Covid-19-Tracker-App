@@ -29,7 +29,7 @@ class CovidInfoCard extends StatelessWidget {
           height: 10,
         ),
         Text(
-          data,
+          data == null ? 'loading...' : data,
           textAlign: TextAlign.center,
           style: GoogleFonts.rajdhani(
             textStyle: TextStyle(

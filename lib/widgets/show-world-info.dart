@@ -21,7 +21,7 @@ class WorldCovidInfo extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
-                color: Colors.grey,
+                color: Color(0xFF666666),
                 offset: Offset(1, 4),
                 spreadRadius: -5,
                 blurRadius: 10)
@@ -45,8 +45,8 @@ class WorldCovidInfo extends StatelessWidget {
             Spacer(),
             Image.asset(
               imagePath,
-              height: MediaQuery.of(context).size.height * .13,
-              width: MediaQuery.of(context).size.width * .22,
+              height: MediaQuery.of(context).size.height * .12,
+              width: MediaQuery.of(context).size.width * .24,
               fit: BoxFit.cover,
             ),
             Spacer(),
