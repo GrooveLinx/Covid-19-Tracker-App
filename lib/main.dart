@@ -38,6 +38,7 @@ class _MyAppState extends State<MyApp> {
         ),
       ],
       child: MaterialApp(
+        
         debugShowCheckedModeBanner: false,
         title: 'Covid19 App',
         theme: ThemeData(

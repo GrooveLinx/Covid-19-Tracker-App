@@ -19,7 +19,7 @@ class WorldCovidInfo extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all(8),
       child: Container(
-        padding: EdgeInsets.all(10),
+        padding: EdgeInsets.all(8),
         decoration: BoxDecoration(
           color: Colors.green[100],
           borderRadius: BorderRadius.circular(10),
@@ -51,7 +51,7 @@ class WorldCovidInfo extends StatelessWidget {
               imagePath,
               height: MediaQuery.of(context).size.height * .15,
               width: MediaQuery.of(context).size.width * .25,
-              fit: BoxFit.cover,
+              fit: BoxFit.contain,
             ),
             Spacer(),
             Text(
@@ -59,7 +59,7 @@ class WorldCovidInfo extends StatelessWidget {
               style: GoogleFonts.rajdhani(
                 textStyle: TextStyle(
                   color: color,
-                  fontSize: 22.0,
+                  fontSize: 24.0,
                   fontWeight: FontWeight.w600,
                 ),
               ),

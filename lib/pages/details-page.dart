@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:covid19_app/config/const.dart';
 import 'package:covid19_app/pages/home-page.dart';
 import 'package:covid19_app/widgets/show-covid-info.dart';

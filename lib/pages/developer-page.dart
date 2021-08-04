@@ -24,6 +24,10 @@ class DeveloperPage extends StatelessWidget {
           onPressed: () {
             Navigator.pop(
               context,
+              MaterialPageRoute(
+                builder: (context) =>
+                    HomePage(), // replace popped page to call init again
+              ),
             );
             Navigator.pushReplacement(
               context,
@@ -38,11 +42,11 @@ class DeveloperPage extends StatelessWidget {
         elevation: 0,
         title: Text(
           'Developer',
-          style: GoogleFonts.nunito(
+          style: GoogleFonts.ubuntu(
             textStyle: TextStyle(
               color: Colors.blueGrey,
-              fontSize: 26,
-              fontWeight: FontWeight.w800,
+              fontSize: 28.0,
+              fontWeight: FontWeight.w600,
             ),
           ),
         ),
@@ -87,12 +91,12 @@ class DeveloperPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         ClipRRect(
-                          borderRadius: BorderRadius.circular(400),
+                          borderRadius: BorderRadius.circular(110),
                           child: Image.asset(
                             'images/ripplebee_logo.png',
                             height: height * .15,
                             width: width * .25,
-                            fit: BoxFit.contain,
+                            fit: BoxFit.cover,
                             alignment: Alignment.centerLeft,
                           ),
                         ),
