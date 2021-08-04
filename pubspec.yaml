@@ -44,7 +44,7 @@ dev_dependencies:
 
 flutter_native_splash:
   color: "#C9EDDC"
-  image: images/launch_icon.png
+  image: images/virus.png
   color_dark: "1a1a1a"
   android: true
   

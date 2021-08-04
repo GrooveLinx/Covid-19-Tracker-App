@@ -184,26 +184,32 @@ class _HomePageState extends State<HomePage> {
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            'Novel Corona\nVirus',
-                            style: TextStyle(
-                              color: Colors.teal[800],
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold,
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Text(
+                              'Novel Corona\nVirus',
+                              style: TextStyle(
+                                color: Colors.teal[800],
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              softWrap: true,
                             ),
-                            softWrap: true,
                           ),
                           SizedBox(
                             height: 10,
                           ),
-                          Text(
-                            'Stay Home Stay Safe',
-                            style: TextStyle(
-                              color: Colors.brown[800],
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Text(
+                              'Stay Home Stay Safe',
+                              style: TextStyle(
+                                color: Colors.brown[800],
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              softWrap: true,
                             ),
-                            softWrap: true,
                           )
                         ],
                       ),
