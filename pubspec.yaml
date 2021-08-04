@@ -36,10 +36,18 @@ dependencies:
   google_mobile_ads: ^0.13.0
   url_launcher: ^5.2.7
   connectivity: ^3.0.6
+  flutter_native_splash: ^1.2.1
   
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+flutter_native_splash:
+  color: "#C9EDDC"
+  image: images/launch_icon.png
+  color_dark: "1a1a1a"
+  android: true
+  
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
