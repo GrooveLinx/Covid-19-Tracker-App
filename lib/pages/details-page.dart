@@ -124,7 +124,10 @@ class _CovidDetailsState extends State<CovidDetails> {
         ),
       ),
       body: Container(
-        margin: EdgeInsets.all(20),
+        margin: EdgeInsets.symmetric(
+          horizontal: 10,
+          vertical: 20,
+        ),
         padding: EdgeInsets.all(15),
         width: double.infinity,
         decoration: BoxDecoration(
@@ -185,7 +188,6 @@ class _CovidDetailsState extends State<CovidDetails> {
             Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CovidInfoCard(
                   title: 'Total Cases',
@@ -202,7 +204,6 @@ class _CovidDetailsState extends State<CovidDetails> {
             Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CovidInfoCard(
                   title: 'Cases Today',
@@ -219,7 +220,6 @@ class _CovidDetailsState extends State<CovidDetails> {
             Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CovidInfoCard(
                   title: 'Total Deaths',

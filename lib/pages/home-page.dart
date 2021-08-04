@@ -173,44 +173,45 @@ class _HomePageState extends State<HomePage> {
           : Column(
               children: [
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  padding:
+                      EdgeInsets.only(left: 10, right: 15, top: 10, bottom: 5),
                   height: MediaQuery.of(context).size.height * .20,
                   color: Colors.amber[50],
                   child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Flexible(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Novel Corona\nVirus',
-                              style: TextStyle(
-                                color: Colors.teal[800],
-                                fontSize: 30,
-                                fontWeight: FontWeight.bold,
-                              ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Novel Corona\nVirus',
+                            style: TextStyle(
+                              color: Colors.teal[800],
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
                             ),
-                            SizedBox(
-                              height: 10,
+                            softWrap: true,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            'Stay Home Stay Safe',
+                            style: TextStyle(
+                              color: Colors.brown[800],
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
                             ),
-                            Text(
-                              'Stay Home Stay Safe',
-                              style: TextStyle(
-                                color: Colors.brown[800],
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            )
-                          ],
-                        ),
+                            softWrap: true,
+                          )
+                        ],
                       ),
                       FittedBox(
                         child: Image.asset(
                           'images/bacteria.png',
-                          height: MediaQuery.of(context).size.height * .27,
-                          width: MediaQuery.of(context).size.width * .50,
+                          height: MediaQuery.of(context).size.height * .25,
+                          width: MediaQuery.of(context).size.width * .40,
                           fit: BoxFit.contain,
                         ),
                       ),
@@ -372,7 +373,7 @@ class _HomePageState extends State<HomePage> {
                                           height: MediaQuery.of(context)
                                                   .size
                                                   .height *
-                                              .185,
+                                              .20,
                                           width: double.infinity,
                                           margin: EdgeInsets.only(
                                             top: 12.0,
@@ -397,8 +398,33 @@ class _HomePageState extends State<HomePage> {
                                               children: [
                                                 Row(
                                                   mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceAround,
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                      '${countryData[index]['country']}' ==
+                                                              null
+                                                          ? 'loading...'
+                                                          : '${countryData[index]['country']}',
+                                                      style: GoogleFonts.ubuntu(
+                                                        textStyle: TextStyle(
+                                                          color: Colors
+                                                              .blueGrey[600],
+                                                          fontSize: 22.0,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                        ),
+                                                      ),
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                    ),
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                  height: 12,
+                                                ),
+                                                Row(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
                                                   children: [
                                                     Image.network(
                                                       countryData[index][
@@ -417,21 +443,30 @@ class _HomePageState extends State<HomePage> {
                                                       height: 60,
                                                       width: 60,
                                                     ),
+                                                    SizedBox(
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              .1,
+                                                    ),
                                                     Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
                                                       children: [
                                                         Text(
-                                                          '${countryData[index]['country']}' ==
+                                                          'Cases : ${countryData[index]['cases']}' ==
                                                                   null
-                                                              ? 'loading...'
-                                                              : '${countryData[index]['country']}',
+                                                              ? 'loading'
+                                                              : 'Cases : ${countryData[index]['cases']}',
                                                           style: GoogleFonts
-                                                              .ubuntu(
+                                                              .poppins(
                                                             textStyle:
                                                                 TextStyle(
                                                               color: Colors
-                                                                      .blueGrey[
-                                                                  600],
-                                                              fontSize: 22.0,
+                                                                  .brown[600],
+                                                              fontSize: 18.0,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .w600,
@@ -439,73 +474,8 @@ class _HomePageState extends State<HomePage> {
                                                           ),
                                                           overflow: TextOverflow
                                                               .ellipsis,
-                                                        ),
-                                                        SizedBox(
-                                                          height: 15,
-                                                        ),
-                                                        Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceAround,
-                                                          children: [
-                                                            Container(
-                                                              child: Row(
-                                                                children: [
-                                                                  Text(
-                                                                    'Cases : ${countryData[index]['cases']}' ==
-                                                                            null
-                                                                        ? 'loading'
-                                                                        : 'Cases : ${countryData[index]['cases']}',
-                                                                    style: GoogleFonts
-                                                                        .poppins(
-                                                                      textStyle:
-                                                                          TextStyle(
-                                                                        color: Colors
-                                                                            .brown[600],
-                                                                        fontSize:
-                                                                            18.0,
-                                                                        fontWeight:
-                                                                            FontWeight.w600,
-                                                                      ),
-                                                                    ),
-                                                                    overflow:
-                                                                        TextOverflow
-                                                                            .ellipsis,
-                                                                    // maxLines: 2,
-                                                                    softWrap:
-                                                                        true,
-                                                                  ),
-                                                                  SizedBox(
-                                                                    width: 15,
-                                                                  ),
-                                                                  Text(
-                                                                    'Deaths : ${countryData[index]['deaths']}' ==
-                                                                            null
-                                                                        ? 'loading'
-                                                                        : 'Deaths : ${countryData[index]['deaths']}',
-                                                                    style: GoogleFonts
-                                                                        .poppins(
-                                                                      textStyle:
-                                                                          TextStyle(
-                                                                        color: Colors
-                                                                            .red[800],
-                                                                        fontSize:
-                                                                            18.0,
-                                                                        fontWeight:
-                                                                            FontWeight.w600,
-                                                                      ),
-                                                                    ),
-                                                                    overflow:
-                                                                        TextOverflow
-                                                                            .ellipsis,
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            )
-                                                          ],
-                                                        ),
-                                                        SizedBox(
-                                                          height: 10,
+                                                          // maxLines: 2,
+                                                          softWrap: true,
                                                         ),
                                                         Text(
                                                           'Recovered : ${countryData[index]['recovered']}' ==
@@ -528,6 +498,26 @@ class _HomePageState extends State<HomePage> {
                                                               .ellipsis,
                                                           maxLines: 2,
                                                           softWrap: true,
+                                                        ),
+                                                        Text(
+                                                          'Deaths : ${countryData[index]['deaths']}' ==
+                                                                  null
+                                                              ? 'loading'
+                                                              : 'Deaths : ${countryData[index]['deaths']}',
+                                                          style: GoogleFonts
+                                                              .poppins(
+                                                            textStyle:
+                                                                TextStyle(
+                                                              color: Colors
+                                                                  .red[800],
+                                                              fontSize: 18.0,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                            ),
+                                                          ),
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
                                                         ),
                                                       ],
                                                     )

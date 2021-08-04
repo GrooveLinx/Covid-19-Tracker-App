@@ -24,6 +24,7 @@ class CovidInfoCard extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
           ),
+          softWrap: true,
         ),
         SizedBox(
           height: 10,
@@ -38,6 +39,7 @@ class CovidInfoCard extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
           ),
+          softWrap: true,
         )
       ],
     );
