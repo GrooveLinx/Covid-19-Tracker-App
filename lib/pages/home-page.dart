@@ -130,6 +130,18 @@ class _HomePageState extends State<HomePage> {
     super.didChangeDependencies();
   }
 
+  String converter(int data) {
+    String M = 'M';
+    final convertData = data / 1000000;
+    return convertData.toStringAsFixed(2) + M;
+  }
+
+  String converterK(int data) {
+    String K = 'K';
+    final convertData = data / 1000;
+    return convertData.toStringAsFixed(2) + K;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -278,33 +290,55 @@ class _HomePageState extends State<HomePage> {
                                                   title: 'Total\nCases',
                                                   color: Colors.purple,
                                                   imagePath: 'images/img3.png',
-                                                  data: proObj.getCovidData
-                                                      .global.totalConfirmed
-                                                      .toString(),
+                                                  data: converter(
+                                                    proObj.getCovidData.global
+                                                        .totalConfirmed,
+                                                  ),
                                                 ),
                                                 WorldCovidInfo(
                                                   title: 'New\nConfirmed',
                                                   color: Colors.orange[900],
                                                   imagePath: 'images/img1.png',
-                                                  data: proObj.getCovidData
-                                                      .global.newConfirmed
-                                                      .toString(),
+                                                  data: converterK(
+                                                    proObj.getCovidData.global
+                                                        .newConfirmed,
+                                                  ),
                                                 ),
                                                 WorldCovidInfo(
                                                   title: 'New\nRecovered',
                                                   color: Colors.green[700],
                                                   imagePath: 'images/img4.png',
-                                                  data: proObj.getCovidData
-                                                      .global.newRecovered
-                                                      .toString(),
+                                                  data: converterK(
+                                                    proObj.getCovidData.global
+                                                        .newRecovered,
+                                                  ),
+                                                ),
+                                                WorldCovidInfo(
+                                                  title: 'Total\nRecovered',
+                                                  color: Colors.green[900],
+                                                  imagePath: 'images/img6.png',
+                                                  data: converter(
+                                                    proObj.getCovidData.global
+                                                        .totalRecovered,
+                                                  ),
                                                 ),
                                                 WorldCovidInfo(
                                                   title: 'New\nDeaths',
-                                                  color: Colors.red[800],
+                                                  color: Colors.red[700],
                                                   imagePath: 'images/img2.png',
-                                                  data: proObj.getCovidData
-                                                      .global.newDeaths
-                                                      .toString(),
+                                                  data: converterK(
+                                                    proObj.getCovidData.global
+                                                        .newDeaths,
+                                                  ),
+                                                ),
+                                                WorldCovidInfo(
+                                                  title: 'Total\nDeaths',
+                                                  color: Colors.red[900],
+                                                  imagePath: 'images/img5.png',
+                                                  data: converter(
+                                                    proObj.getCovidData.global
+                                                        .totalDeaths,
+                                                  ),
                                                 ),
                                               ],
                                             ),
