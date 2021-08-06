@@ -139,15 +139,19 @@ class _HomePageState extends State<HomePage> {
   }
 
   String converter(int data) {
+    String B = 'B';
     String M = 'M';
-    final convertData = data / 1000000;
-    return convertData.toStringAsFixed(2) + M;
-  }
-
-  String converterK(int data) {
     String K = 'K';
-    final convertData = data / 1000;
-    return convertData.toStringAsFixed(2) + K;
+    if (data > 1000000000) {
+      final convertData = data / 1000000000;
+      return convertData.toStringAsFixed(2) + B;
+    } else if (data > 1000000) {
+      final convertData = data / 1000000;
+      return convertData.toStringAsFixed(2) + M;
+    } else {
+      final convertData = data / 1000;
+      return convertData.toStringAsFixed(2) + K;
+    }
   }
 
   @override
@@ -307,7 +311,7 @@ class _HomePageState extends State<HomePage> {
                                                   title: 'New\nConfirmed',
                                                   color: Colors.orange[900],
                                                   imagePath: 'images/img1.png',
-                                                  data: converterK(
+                                                  data: converter(
                                                     proObj.getCovidData.global
                                                         .newConfirmed,
                                                   ),
@@ -325,7 +329,7 @@ class _HomePageState extends State<HomePage> {
                                                   title: 'New\nRecovered',
                                                   color: Colors.green[700],
                                                   imagePath: 'images/img4.png',
-                                                  data: converterK(
+                                                  data: converter(
                                                     proObj.getCovidData.global
                                                         .newRecovered,
                                                   ),
@@ -343,7 +347,7 @@ class _HomePageState extends State<HomePage> {
                                                   title: 'New\nDeaths',
                                                   color: Colors.red[700],
                                                   imagePath: 'images/img2.png',
-                                                  data: converterK(
+                                                  data: converter(
                                                     proObj.getCovidData.global
                                                         .newDeaths,
                                                   ),
