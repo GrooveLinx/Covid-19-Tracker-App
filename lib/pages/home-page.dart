@@ -176,13 +176,14 @@ class _HomePageState extends State<HomePage> {
               size: 30.0,
             ),
             onPressed: () {
+              _showInterstitialAd();
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (BuildContext context) => DeveloperPage(),
                 ),
               );
-              _showInterstitialAd();
+            
             },
           ),
         ],

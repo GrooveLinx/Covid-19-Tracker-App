@@ -91,16 +91,13 @@ class DeveloperPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Container(
-                          width: MediaQuery.of(context).size.width * .3,
-                          height: MediaQuery.of(context).size.height * .18,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(400),
-                            child: Image.asset(
-                              'images/ripplebee_logo.png',
-                              height: height * .15,
-                              width: width * .25,
-                              fit: BoxFit.cover,
-                              alignment: Alignment.centerLeft,
+                          height: 100,
+                          width: 100,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(90),
+                            image: DecorationImage(
+                              image: AssetImage('images/ripplebee_logo.png'),
+                              fit: BoxFit.contain,
                             ),
                           ),
                         ),
