@@ -32,8 +32,8 @@ class _HomePageState extends State<HomePage> {
   _createInterstitialAd() {
     InterstitialAd.load(
       adUnitId: Platform.isAndroid
-          ? 'ca-app-pub-3940256099942544/1033173712'
-          : 'ca-app-pub-3940256099942544/4411468910', // test ad ids for different platforms
+          ? 'ca-app-pub-4066984467805494/1921276828'
+          : 'ca-app-pub-4066984467805494/1921276828', // test ad ids for different platforms
       request: AdRequest(),
       adLoadCallback: InterstitialAdLoadCallback(
         // if ad fails to load
