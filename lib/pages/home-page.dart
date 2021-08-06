@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:covid19_app/models/country-covid-model.dart';
 import 'package:covid19_app/pages/details-page.dart';
 import 'package:covid19_app/pages/developer-page.dart';
 import 'package:covid19_app/provider/connectivity-provider.dart';
@@ -82,26 +83,33 @@ class _HomePageState extends State<HomePage> {
     myInterstitial.show();
   }
 
-  List countryData;
+  List<CountryData> countryData = [];
   bool isLoading = true;
 
-  Future<String> getCountryData() async {
+  Future<void> getCountryData() async {
     final url = "https://disease.sh/v3/covid-19/countries";
     try {
       final response = await Http.get(
         Uri.parse(url),
       );
 
-      setState(
-        () {
-          countryData = jsonDecode(response.body);
-          isLoading = false;
-        },
-      );
+      if (response.statusCode == 200) {
+        final responseMap = jsonDecode(response.body);
+        setState(
+          () {
+            for (Map map in responseMap) {
+              countryData.add(
+                CountryData.fromJson(map),
+              );
+            }
+
+            isLoading = false;
+          },
+        );
+      } else {}
     } catch (err) {
       throw err;
     }
-    return 'request linked successfully!';
   }
 
   CovidDataProvider covidDataProvider;
@@ -305,15 +313,6 @@ class _HomePageState extends State<HomePage> {
                                                   ),
                                                 ),
                                                 WorldCovidInfo(
-                                                  title: 'New\nRecovered',
-                                                  color: Colors.green[700],
-                                                  imagePath: 'images/img4.png',
-                                                  data: converterK(
-                                                    proObj.getCovidData.global
-                                                        .newRecovered,
-                                                  ),
-                                                ),
-                                                WorldCovidInfo(
                                                   title: 'Total\nRecovered',
                                                   color: Colors.green[900],
                                                   imagePath: 'images/img6.png',
@@ -323,12 +322,12 @@ class _HomePageState extends State<HomePage> {
                                                   ),
                                                 ),
                                                 WorldCovidInfo(
-                                                  title: 'New\nDeaths',
-                                                  color: Colors.red[700],
-                                                  imagePath: 'images/img2.png',
+                                                  title: 'New\nRecovered',
+                                                  color: Colors.green[700],
+                                                  imagePath: 'images/img4.png',
                                                   data: converterK(
                                                     proObj.getCovidData.global
-                                                        .newDeaths,
+                                                        .newRecovered,
                                                   ),
                                                 ),
                                                 WorldCovidInfo(
@@ -338,6 +337,15 @@ class _HomePageState extends State<HomePage> {
                                                   data: converter(
                                                     proObj.getCovidData.global
                                                         .totalDeaths,
+                                                  ),
+                                                ),
+                                                WorldCovidInfo(
+                                                  title: 'New\nDeaths',
+                                                  color: Colors.red[700],
+                                                  imagePath: 'images/img2.png',
+                                                  data: converterK(
+                                                    proObj.getCovidData.global
+                                                        .newDeaths,
                                                   ),
                                                 ),
                                               ],
@@ -365,11 +373,10 @@ class _HomePageState extends State<HomePage> {
                                     padding: EdgeInsets.only(
                                       top: 5,
                                     ),
-                                    itemCount: countryData.length == null
-                                        ? 1
-                                        : countryData.length,
+                                    itemCount: countryData.length,
                                     itemBuilder:
                                         (BuildContext context, int index) {
+                                      final data = countryData[index];
                                       return InkWell(
                                         onTap: () {
                                           _showInterstitialAd();
@@ -377,34 +384,23 @@ class _HomePageState extends State<HomePage> {
                                             context,
                                             MaterialPageRoute(
                                               builder: (_) => CovidDetails(
-                                                updated: countryData[index]
-                                                    ['updated'],
+                                                updated: data.updated,
                                                 countryName:
-                                                    '${countryData[index]["country"]}',
-                                                flag:
-                                                    '${countryData[index]["countryInfo"]['flag']}',
-                                                cases: countryData[index]
-                                                        ['cases']
+                                                    data.country.toString(),
+                                                flag: data.countryInfo.flag
                                                     .toString(),
-                                                recovered: countryData[index]
-                                                        ['recovered']
+                                                cases: data.cases.toString(),
+                                                recovered:
+                                                    data.recovered.toString(),
+                                                deaths: data.deaths.toString(),
+                                                active: data.active.toString(),
+                                                recoveredToday: data
+                                                    .todayRecovered
                                                     .toString(),
-                                                deaths: countryData[index]
-                                                        ['deaths']
-                                                    .toString(),
-                                                active: countryData[index]
-                                                        ['active']
-                                                    .toString(),
-                                                recoveredToday:
-                                                    countryData[index]
-                                                            ['todayRecovered']
-                                                        .toString(),
-                                                todayDeaths: countryData[index]
-                                                        ['todayDeaths']
-                                                    .toString(),
-                                                casesToday: countryData[index]
-                                                        ['todayCases']
-                                                    .toString(),
+                                                todayDeaths:
+                                                    data.todayDeaths.toString(),
+                                                casesToday:
+                                                    data.todayCases.toString(),
                                               ),
                                             ),
                                           );
@@ -441,10 +437,7 @@ class _HomePageState extends State<HomePage> {
                                                       MainAxisAlignment.center,
                                                   children: [
                                                     Text(
-                                                      '${countryData[index]['country']}' ==
-                                                              null
-                                                          ? 'loading...'
-                                                          : '${countryData[index]['country']}',
+                                                      data.country.toString(),
                                                       style: GoogleFonts.ubuntu(
                                                         textStyle: TextStyle(
                                                           color: Colors
@@ -466,20 +459,12 @@ class _HomePageState extends State<HomePage> {
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.center,
                                                   children: [
+                                                    SizedBox(
+                                                      width: 10,
+                                                    ),
                                                     Image.network(
-                                                      countryData[index][
-                                                                      'countryInfo']
-                                                                  ['flag'] ==
-                                                              null
-                                                          ? Icon(
-                                                              Icons.flag,
-                                                              size: 40.0,
-                                                              color: Colors
-                                                                  .blueGrey,
-                                                            )
-                                                          : countryData[index][
-                                                                  'countryInfo']
-                                                              ['flag'],
+                                                      data.countryInfo.flag
+                                                          .toString(),
                                                       height: 60,
                                                       width: 60,
                                                     ),
@@ -496,10 +481,7 @@ class _HomePageState extends State<HomePage> {
                                                               .start,
                                                       children: [
                                                         Text(
-                                                          'Cases : ${countryData[index]['cases']}' ==
-                                                                  null
-                                                              ? 'loading'
-                                                              : 'Cases : ${countryData[index]['cases']}',
+                                                          'Cases :  ${data.cases}',
                                                           style: GoogleFonts
                                                               .poppins(
                                                             textStyle:
@@ -518,10 +500,7 @@ class _HomePageState extends State<HomePage> {
                                                           softWrap: true,
                                                         ),
                                                         Text(
-                                                          'Recovered : ${countryData[index]['recovered']}' ==
-                                                                  null
-                                                              ? 'loading'
-                                                              : 'Recovered : ${countryData[index]['recovered']}',
+                                                          'Recovered :  ${data.recovered}',
                                                           style: GoogleFonts
                                                               .poppins(
                                                             textStyle:
@@ -540,10 +519,7 @@ class _HomePageState extends State<HomePage> {
                                                           softWrap: true,
                                                         ),
                                                         Text(
-                                                          'Deaths : ${countryData[index]['deaths']}' ==
-                                                                  null
-                                                              ? 'loading'
-                                                              : 'Deaths : ${countryData[index]['deaths']}',
+                                                          'Deaths :   ${data.deaths}',
                                                           style: GoogleFonts
                                                               .poppins(
                                                             textStyle:
