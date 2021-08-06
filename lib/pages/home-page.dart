@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:covid19_app/models/country-covid-model.dart';
 import 'package:covid19_app/pages/details-page.dart';
 import 'package:covid19_app/pages/developer-page.dart';
-import 'package:covid19_app/provider/connectivity-provider.dart';
 import 'package:covid19_app/provider/covid-provider.dart';
 import 'package:covid19_app/widgets/show-world-info.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +25,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     _createInterstitialAd(); // create ad
-    Provider.of<ConnectivityProvider>(context, listen: false).startMonitoring();
+    //Provider.of<ConnectivityProvider>(context, listen: false).startMonitoring();
   }
 
   _createInterstitialAd() {
@@ -43,11 +42,9 @@ class _HomePageState extends State<HomePage> {
 
         // else
         onAdLoaded: (InterstitialAd ad) {
-          setState(
-            () {
-              this.myInterstitial = ad; // set the ad equal to the current ad
-            },
-          );
+          setState(() {
+            this.myInterstitial = ad; // set the ad equal to the current ad
+          });
         },
       ),
     );
@@ -69,12 +66,12 @@ class _HomePageState extends State<HomePage> {
 
       // if ad fails to show content
       onAdFailedToShowFullScreenContent: (InterstitialAd ad, AdError error) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => CovidDetails(), // go to next page
-          ),
-        );
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(
+        //     builder: (context) => CovidDetails(), // go to next page
+        //   ),
+        // );
         print('$ad onAdFailedToShowFullScreenContent: $error'); // print error
         ad.dispose(); // dispose ad
       },
@@ -142,10 +139,10 @@ class _HomePageState extends State<HomePage> {
     String B = 'B';
     String M = 'M';
     String K = 'K';
-    if (data > 1000000000) {
+    if (data >= 1000000000) {
       final convertData = data / 1000000000;
       return convertData.toStringAsFixed(2) + B;
-    } else if (data > 1000000) {
+    } else if (data >= 1000000) {
       final convertData = data / 1000000;
       return convertData.toStringAsFixed(2) + M;
     } else {
@@ -179,13 +176,13 @@ class _HomePageState extends State<HomePage> {
               size: 30.0,
             ),
             onPressed: () {
-              _showInterstitialAd();
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (BuildContext context) => DeveloperPage(),
                 ),
               );
+              _showInterstitialAd();
             },
           ),
         ],
@@ -198,7 +195,7 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Container(
                   padding:
-                      EdgeInsets.only(left: 10, right: 15, top: 10, bottom: 5),
+                      EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
                   height: MediaQuery.of(context).size.height * .20,
                   color: Colors.amber[50],
                   child: Row(
@@ -237,14 +234,24 @@ class _HomePageState extends State<HomePage> {
                           )
                         ],
                       ),
-                      FittedBox(
-                        child: Image.asset(
-                          'images/bacteria.png',
-                          height: MediaQuery.of(context).size.height * .25,
-                          width: MediaQuery.of(context).size.width * .40,
-                          fit: BoxFit.contain,
+                      // FittedBox(
+                      //   child: Image.asset(
+                      //     'images/bacteria.png',
+                      //     height: MediaQuery.of(context).size.height * .25,
+                      //     width: MediaQuery.of(context).size.width * .40,
+                      //     fit: BoxFit.contain,
+                      //   ),
+                      // ),
+                      Container(
+                        height: MediaQuery.of(context).size.height * .20,
+                        width: MediaQuery.of(context).size.width * .33,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage('images/bacteria.png'),
+                            fit: BoxFit.contain,
+                          ),
                         ),
-                      ),
+                      )
                     ],
                   ),
                 ),

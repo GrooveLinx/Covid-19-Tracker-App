@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:covid19_app/config/const.dart';
 import 'package:covid19_app/pages/home-page.dart';
 import 'package:covid19_app/widgets/show-covid-info.dart';
@@ -37,19 +39,19 @@ class CovidDetails extends StatefulWidget {
 }
 
 class _CovidDetailsState extends State<CovidDetails> {
-  InterstitialAd myInterstitial;
+  // InterstitialAd myInterstitial;
 
-  @override
-  void initState() {
-    super.initState();
-    //_createInterstitialAd(); // create ad
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _createInterstitialAd(); // create ad
+  // }
 
   // _createInterstitialAd() {
   //   InterstitialAd.load(
   //     adUnitId: Platform.isAndroid
-  //         ? 'ca-app-pub-3940256099942544/1033173712'
-  //         : 'ca-app-pub-3940256099942544/4411468910', // test ad ids for different platforms
+  //          ? 'ca-app-pub-4066984467805494/1921276828'
+  //         : 'ca-app-pub-4066984467805494/1921276828', // test ad ids for different platforms
 
   //     request: AdRequest(),
 
@@ -92,6 +94,7 @@ class _CovidDetailsState extends State<CovidDetails> {
     return Scaffold(
       backgroundColor: Colors.pink[50],
       appBar: AppBar(
+        centerTitle: false,
         elevation: 4,
         backgroundColor: Colors.purple[100],
         leading: IconButton(
@@ -100,6 +103,7 @@ class _CovidDetailsState extends State<CovidDetails> {
             color: Colors.blueGrey,
           ),
           onPressed: () {
+           // _showInterstitialAd();
             Navigator.pop(context); // pops page
             Navigator.pushReplacement(
               context,
@@ -111,8 +115,10 @@ class _CovidDetailsState extends State<CovidDetails> {
           },
         ),
         title: Text(
+          
           '${widget.countryName} Covid Updates',
-          textAlign: TextAlign.left,
+          //textAlign: TextAlign.left,
+          
           style: GoogleFonts.ubuntu(
             textStyle: TextStyle(
               color: Colors.blueGrey[600],

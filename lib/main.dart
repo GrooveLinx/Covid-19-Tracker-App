@@ -1,5 +1,4 @@
 import 'package:covid19_app/pages/home-page.dart';
-import 'package:covid19_app/provider/connectivity-provider.dart';
 import 'package:covid19_app/provider/covid-provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -33,9 +32,9 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(
           create: (context) => CovidDataProvider(),
         ),
-        ChangeNotifierProvider(
-          create: (context) => ConnectivityProvider(),
-        ),
+        // ChangeNotifierProvider(
+        //   create: (context) => ConnectivityProvider(),
+        // ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
