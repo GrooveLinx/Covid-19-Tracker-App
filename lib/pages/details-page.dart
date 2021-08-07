@@ -1,11 +1,8 @@
-import 'dart:io';
-
 import 'package:covid19_app/config/const.dart';
 import 'package:covid19_app/pages/home-page.dart';
 import 'package:covid19_app/widgets/show-covid-info.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class CovidDetails extends StatefulWidget {
   final int updated;

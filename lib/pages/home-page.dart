@@ -135,6 +135,19 @@ class _HomePageState extends State<HomePage> {
     super.didChangeDependencies();
   }
 
+  Future<Map<String, dynamic>> fetchWorldData() async {
+    final url = 'https://disease.sh/v3/covid-19/all';
+    try {
+      final response = await Http.get(
+        Uri.parse(url),
+      );
+      final responseMap = json.decode(response.body);
+      return responseMap;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   String converter(int data) {
     String B = 'B';
     String M = 'M';
@@ -145,9 +158,12 @@ class _HomePageState extends State<HomePage> {
     } else if (data >= 1000000) {
       final convertData = data / 1000000;
       return convertData.toStringAsFixed(2) + M;
-    } else {
+    } else if (data >= 1000) {
       final convertData = data / 1000;
       return convertData.toStringAsFixed(2) + K;
+    } else {
+      final convertData = data;
+      return convertData.toString();
     }
   }
 
@@ -183,7 +199,6 @@ class _HomePageState extends State<HomePage> {
                   builder: (BuildContext context) => DeveloperPage(),
                 ),
               );
-            
             },
           ),
         ],
@@ -301,67 +316,82 @@ class _HomePageState extends State<HomePage> {
                                                   .size
                                                   .height *
                                               .35,
-                                          child: Consumer<CovidDataProvider>(
-                                            builder: (context, proObj, _) =>
-                                                ListView(
-                                              scrollDirection: Axis.horizontal,
-                                              children: [
-                                                WorldCovidInfo(
-                                                  title: 'Total\nCases',
-                                                  color: Colors.purple,
-                                                  imagePath: 'images/img3.png',
-                                                  data: converter(
-                                                    proObj.getCovidData.global
-                                                        .totalConfirmed,
-                                                  ),
-                                                ),
-                                                WorldCovidInfo(
-                                                  title: 'New\nConfirmed',
-                                                  color: Colors.orange[900],
-                                                  imagePath: 'images/img1.png',
-                                                  data: converter(
-                                                    proObj.getCovidData.global
-                                                        .newConfirmed,
-                                                  ),
-                                                ),
-                                                WorldCovidInfo(
-                                                  title: 'Total\nRecovered',
-                                                  color: Colors.green[900],
-                                                  imagePath: 'images/img6.png',
-                                                  data: converter(
-                                                    proObj.getCovidData.global
-                                                        .totalRecovered,
-                                                  ),
-                                                ),
-                                                WorldCovidInfo(
-                                                  title: 'New\nRecovered',
-                                                  color: Colors.green[700],
-                                                  imagePath: 'images/img4.png',
-                                                  data: converter(
-                                                    proObj.getCovidData.global
-                                                        .newRecovered,
-                                                  ),
-                                                ),
-                                                WorldCovidInfo(
-                                                  title: 'Total\nDeaths',
-                                                  color: Colors.red[900],
-                                                  imagePath: 'images/img5.png',
-                                                  data: converter(
-                                                    proObj.getCovidData.global
-                                                        .totalDeaths,
-                                                  ),
-                                                ),
-                                                WorldCovidInfo(
-                                                  title: 'New\nDeaths',
-                                                  color: Colors.red[700],
-                                                  imagePath: 'images/img2.png',
-                                                  data: converter(
-                                                    proObj.getCovidData.global
-                                                        .newDeaths,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
+                                          child: FutureBuilder<
+                                              Map<String, dynamic>>(
+                                            future: fetchWorldData(),
+                                            builder: (context, snapshot) {
+                                              if (snapshot.hasData) {
+                                                return ListView(
+                                                  scrollDirection:
+                                                      Axis.horizontal,
+                                                  children: [
+                                                    WorldCovidInfo(
+                                                      title: 'Total\nCases',
+                                                      color: Colors.purple,
+                                                      imagePath:
+                                                          'images/img3.png',
+                                                      data: converter(
+                                                        snapshot.data['cases'],
+                                                      ),
+                                                    ),
+                                                    WorldCovidInfo(
+                                                      title: 'New\nConfirmed',
+                                                      color: Colors.orange[900],
+                                                      imagePath:
+                                                          'images/img1.png',
+                                                      data: converter(
+                                                        snapshot
+                                                            .data['todayCases'],
+                                                      ),
+                                                    ),
+                                                    WorldCovidInfo(
+                                                      title: 'Total\nRecovered',
+                                                      color: Colors.green[900],
+                                                      imagePath:
+                                                          'images/img6.png',
+                                                      data: converter(
+                                                        snapshot
+                                                            .data['recovered'],
+                                                      ),
+                                                    ),
+                                                    WorldCovidInfo(
+                                                      title: 'New\nRecovered',
+                                                      color: Colors.green[700],
+                                                      imagePath:
+                                                          'images/img4.png',
+                                                      data: converter(
+                                                        snapshot.data[
+                                                            'todayRecovered'],
+                                                      ),
+                                                    ),
+                                                    WorldCovidInfo(
+                                                      title: 'Total\nDeaths',
+                                                      color: Colors.red[900],
+                                                      imagePath:
+                                                          'images/img5.png',
+                                                      data: converter(
+                                                        snapshot.data['deaths'],
+                                                      ),
+                                                    ),
+                                                    WorldCovidInfo(
+                                                      title: 'New\nDeaths',
+                                                      color: Colors.red[700],
+                                                      imagePath:
+                                                          'images/img2.png',
+                                                      data: converter(
+                                                        snapshot.data[
+                                                            'todayDeaths'],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                );
+                                              } else {
+                                                return Center(
+                                                  child:
+                                                      CircularProgressIndicator(),
+                                                );
+                                              }
+                                            },
                                           ),
                                         ),
                                 ],
