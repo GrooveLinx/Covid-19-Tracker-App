@@ -7,14 +7,16 @@ class ErrorPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xfffefefe),
       body: SafeArea(
         child: Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Spacer(),
               Image.asset(
-                'images/error.png',
+                'images/error1.png',
                 height: MediaQuery.of(context).size.height * .5,
                 width: double.infinity,
               ),
@@ -22,7 +24,7 @@ class ErrorPage extends StatelessWidget {
                 height: MediaQuery.of(context).size.height * .05,
               ),
               Text(
-                'Check Your Internet Connection!',
+                'Check Your\nInternet Connection!',
                 textAlign: TextAlign.center,
                 style: GoogleFonts.poppins(
                   textStyle: TextStyle(
@@ -31,7 +33,8 @@ class ErrorPage extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-              )
+              ),
+              Spacer(),
             ],
           ),
         ),

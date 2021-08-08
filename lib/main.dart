@@ -1,3 +1,7 @@
+import 'dart:async';
+
+import 'package:connectivity/connectivity.dart';
+import 'package:covid19_app/pages/404-page.dart';
 import 'package:covid19_app/pages/home-page.dart';
 import 'package:covid19_app/provider/covid-provider.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +24,29 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  bool isConnected = false;
+  StreamSubscription sub;
+
+  @override
+  void initState() {
+    super.initState();
+    sub = Connectivity().onConnectivityChanged.listen(
+      (event) {
+        setState(
+          () {
+            isConnected = (event != ConnectivityResult.none);
+          },
+        );
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    sub.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations(
@@ -44,7 +71,7 @@ class _MyAppState extends State<MyApp> {
             Theme.of(context).textTheme,
           ),
         ),
-        home: HomePage(),
+        home: isConnected ? HomePage() : ErrorPage(),
       ),
     );
   }
