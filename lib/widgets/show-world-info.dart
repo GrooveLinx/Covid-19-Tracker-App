@@ -37,6 +37,7 @@ class WorldCovidInfo extends StatelessWidget {
       width: MediaQuery.of(context).size.width * .45,
       child: Column(
         children: [
+          Spacer(),
           Text(
             title,
             textAlign: TextAlign.center,
@@ -51,8 +52,8 @@ class WorldCovidInfo extends StatelessWidget {
           Spacer(),
           Image.asset(
             imagePath,
-            height: MediaQuery.of(context).size.height * .15,
-            width: MediaQuery.of(context).size.width * .25,
+            height: MediaQuery.of(context).size.height * .17,
+            width: MediaQuery.of(context).size.width * .3,
             fit: BoxFit.contain,
           ),
           Spacer(),

@@ -15,25 +15,39 @@ class ErrorPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Spacer(),
+              Spacer(),
               Image.asset(
                 'images/error1.png',
                 height: MediaQuery.of(context).size.height * .5,
                 width: double.infinity,
               ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * .05,
-              ),
+              Spacer(),
               Text(
-                'Check Your\nInternet Connection!',
+                'Seems like you\'re in offline!',
                 textAlign: TextAlign.center,
-                style: GoogleFonts.poppins(
+                style: GoogleFonts.lato(
                   textStyle: TextStyle(
-                    color: Colors.blueGrey[600],
+                    color: Colors.blueGrey[200],
+                    fontSize: 23.0,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                softWrap: true,
+              ),
+              Spacer(),
+              Text(
+                'Please check your\nInternet Connection!',
+                textAlign: TextAlign.center,
+                style: GoogleFonts.lato(
+                  textStyle: TextStyle(
+                    color: Colors.blueGrey[200],
                     fontSize: 22.0,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
+                softWrap: true,
               ),
+              Spacer(),
               Spacer(),
             ],
           ),

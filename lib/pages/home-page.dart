@@ -1,9 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'package:connectivity/connectivity.dart';
 import 'package:covid19_app/models/country-covid-model.dart';
-import 'package:covid19_app/pages/404-page.dart';
 import 'package:covid19_app/pages/details-page.dart';
 import 'package:covid19_app/pages/developer-page.dart';
 import 'package:covid19_app/provider/covid-provider.dart';

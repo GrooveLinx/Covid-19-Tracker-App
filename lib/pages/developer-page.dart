@@ -4,8 +4,37 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:mdi/mdi.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class DeveloperPage extends StatelessWidget {
+class DeveloperPage extends StatefulWidget {
   const DeveloperPage({Key key}) : super(key: key);
+
+  @override
+  _DeveloperPageState createState() => _DeveloperPageState();
+}
+
+class _DeveloperPageState extends State<DeveloperPage> {
+  Future<void> _openFacebookLink(String url) async {
+    try {
+      await launch(url);
+    } catch (err) {
+      print('could not launch $url');
+    }
+  }
+
+  Future<void> _openLinkedInLink(String url) async {
+    try {
+      await launch(url);
+    } catch (err) {
+      print('could not launch $url');
+    }
+  }
+
+  Future<void> _openTwitterLink(String url) async {
+    try {
+      await launch(url);
+    } catch (err) {
+      print('could not launch $url');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -222,29 +251,5 @@ class DeveloperPage extends StatelessWidget {
         ],
       ),
     );
-  }
-}
-
-Future<void> _openFacebookLink(String url) async {
-  try {
-    await launch(url);
-  } catch (err) {
-    print('could not launch $url');
-  }
-}
-
-Future<void> _openLinkedInLink(String url) async {
-  try {
-    await launch(url);
-  } catch (err) {
-    print('could not launch $url');
-  }
-}
-
-Future<void> _openTwitterLink(String url) async {
-  try {
-    await launch(url);
-  } catch (err) {
-    print('could not launch $url');
   }
 }

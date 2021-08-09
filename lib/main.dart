@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:connectivity/connectivity.dart';
 import 'package:covid19_app/pages/404-page.dart';
 import 'package:covid19_app/pages/home-page.dart';
@@ -59,9 +58,6 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(
           create: (context) => CovidDataProvider(),
         ),
-        // ChangeNotifierProvider(
-        //   create: (context) => ConnectivityProvider(),
-        // ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
