@@ -14,7 +14,7 @@ class DeveloperPage extends StatefulWidget {
 }
 
 class _DeveloperPageState extends State<DeveloperPage> {
-  BannerAd _bannerAd;
+  /*BannerAd _bannerAd;
   bool _isBannerAdReady = false;
   Future<InitializationStatus> _initGoogleMobileAds() {
     return MobileAds.instance.initialize();
@@ -45,7 +45,7 @@ class _DeveloperPageState extends State<DeveloperPage> {
       ),
     );
     _bannerAd.load();
-  }
+  }*/
 
   Future<void> _openFacebookLink(String url) async {
     try {
@@ -289,7 +289,7 @@ class _DeveloperPageState extends State<DeveloperPage> {
               ),
             ],
           ),
-          Positioned(
+          /*Positioned(
             child: _isBannerAdReady
                 ? Align(
                     alignment: Alignment.topCenter,
@@ -302,7 +302,7 @@ class _DeveloperPageState extends State<DeveloperPage> {
                 : SizedBox(
                     height: 1,
                   ),
-          ),
+          ),*/
         ],
       ),
     );

@@ -19,17 +19,17 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   InterstitialAd myInterstitial;
-  BannerAd _bannerAd;
-  bool _isBannerAdReady = false;
-  Future<InitializationStatus> _initGoogleMobileAds() {
-    return MobileAds.instance.initialize();
-  }
+  // BannerAd _bannerAd;
+  // bool _isBannerAdReady = false;
+  // Future<InitializationStatus> _initGoogleMobileAds() {
+  //   return MobileAds.instance.initialize();
+  // }
 
   @override
   void initState() {
     super.initState();
     _createInterstitialAd(); // create ad
-    _createBannerAd();
+    //_createBannerAd();
   }
 
   @override
@@ -38,13 +38,13 @@ class _HomePageState extends State<HomePage> {
     super.didChangeDependencies();
   }
 
-  @override
+  /* @override
   void dispose() {
     _bannerAd.dispose();
     super.dispose();
-  }
+  }*/
 
-  _createBannerAd() {
+  /* _createBannerAd() {
     _bannerAd = BannerAd(
       adUnitId: AdHelper.bannerAdUnitId,
       request: AdRequest(),
@@ -63,7 +63,7 @@ class _HomePageState extends State<HomePage> {
       ),
     );
     _bannerAd.load();
-  }
+  }*/
 
   _createInterstitialAd() {
     InterstitialAd.load(
@@ -629,7 +629,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ],
                 ),
-                Positioned(
+                /*Positioned(
                   bottom: 10,
                   left: 0,
                   right: 0,
@@ -645,7 +645,7 @@ class _HomePageState extends State<HomePage> {
                       : SizedBox(
                           height: 1,
                         ),
-                ),
+                ),*/
               ],
             ),
     );

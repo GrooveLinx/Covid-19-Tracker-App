@@ -38,7 +38,7 @@ class CovidDetails extends StatefulWidget {
 }
 
 class _CovidDetailsState extends State<CovidDetails> {
-  BannerAd _bannerAd;
+  /* BannerAd _bannerAd;
   bool _isBannerAdReady = false;
   Future<InitializationStatus> _initGoogleMobileAds() {
     return MobileAds.instance.initialize();
@@ -72,7 +72,7 @@ class _CovidDetailsState extends State<CovidDetails> {
   void dispose() {
     _bannerAd.dispose();
     super.dispose();
-  }
+  }*/
   // InterstitialAd myInterstitial;
 
   // @override
@@ -272,15 +272,17 @@ class _CovidDetailsState extends State<CovidDetails> {
                 ),
               ],
             ),
-            if (_isBannerAdReady)
-              Align(
-                alignment: Alignment.topCenter,
-                child: Container(
-                  width: _bannerAd.size.width.toDouble(),
-                  height: _bannerAd.size.height.toDouble(),
-                  child: AdWidget(ad: _bannerAd),
-                ),
-              ),
+            Spacer(),
+            /* _isBannerAdReady
+                ? Align(
+                    alignment: Alignment.topCenter,
+                    child: Container(
+                      width: _bannerAd.size.width.toDouble(),
+                      height: _bannerAd.size.height.toDouble(),
+                      child: AdWidget(ad: _bannerAd),
+                    ),
+                  )
+                : Spacer(),*/
           ],
         ),
       ),
