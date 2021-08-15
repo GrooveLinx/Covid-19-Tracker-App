@@ -1,8 +1,10 @@
 import 'package:covid19_app/config/const.dart';
 import 'package:covid19_app/pages/home-page.dart';
+import 'package:covid19_app/provider/ads_helper.dart';
 import 'package:covid19_app/widgets/show-covid-info.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class CovidDetails extends StatefulWidget {
   final int updated;
@@ -36,6 +38,41 @@ class CovidDetails extends StatefulWidget {
 }
 
 class _CovidDetailsState extends State<CovidDetails> {
+  BannerAd _bannerAd;
+  bool _isBannerAdReady = false;
+  Future<InitializationStatus> _initGoogleMobileAds() {
+    return MobileAds.instance.initialize();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _bannerAd = BannerAd(
+      adUnitId: AdHelper.bannerAdUnitId,
+      request: AdRequest(),
+      size: AdSize.banner,
+      listener: BannerAdListener(
+        onAdLoaded: (_) {
+          setState(() {
+            _isBannerAdReady = true;
+          });
+        },
+        onAdFailedToLoad: (ad, err) {
+          print('Failed to load a banner ad: ${err.message}');
+          _isBannerAdReady = false;
+          ad.dispose();
+        },
+      ),
+    );
+
+    _bannerAd.load();
+  }
+
+  @override
+  void dispose() {
+    _bannerAd.dispose();
+    super.dispose();
+  }
   // InterstitialAd myInterstitial;
 
   // @override
@@ -100,7 +137,7 @@ class _CovidDetailsState extends State<CovidDetails> {
             color: Colors.blueGrey,
           ),
           onPressed: () {
-           // _showInterstitialAd();
+            // _showInterstitialAd();
             Navigator.pop(context); // pops page
             Navigator.pushReplacement(
               context,
@@ -112,10 +149,9 @@ class _CovidDetailsState extends State<CovidDetails> {
           },
         ),
         title: Text(
-          
           '${widget.countryName} Covid Updates',
           //textAlign: TextAlign.left,
-          
+
           style: GoogleFonts.ubuntu(
             textStyle: TextStyle(
               color: Colors.blueGrey[600],
@@ -236,7 +272,15 @@ class _CovidDetailsState extends State<CovidDetails> {
                 ),
               ],
             ),
-            Spacer(),
+            if (_isBannerAdReady)
+              Align(
+                alignment: Alignment.topCenter,
+                child: Container(
+                  width: _bannerAd.size.width.toDouble(),
+                  height: _bannerAd.size.height.toDouble(),
+                  child: AdWidget(ad: _bannerAd),
+                ),
+              ),
           ],
         ),
       ),

@@ -2,12 +2,10 @@ import 'dart:async';
 import 'package:connectivity/connectivity.dart';
 import 'package:covid19_app/pages/404-page.dart';
 import 'package:covid19_app/pages/home-page.dart';
-import 'package:covid19_app/provider/covid-provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:provider/provider.dart';
 
 void main() {
   WidgetsFlutterBinding
@@ -53,22 +51,15 @@ class _MyAppState extends State<MyApp> {
         DeviceOrientation.portraitUp,
       ],
     );
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (context) => CovidDataProvider(),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Covid19 App',
+      theme: ThemeData(
+        textTheme: GoogleFonts.latoTextTheme(
+          Theme.of(context).textTheme,
         ),
-      ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Covid19 App',
-        theme: ThemeData(
-          textTheme: GoogleFonts.latoTextTheme(
-            Theme.of(context).textTheme,
-          ),
-        ),
-        home: isConnected ? HomePage() : ErrorPage(),
       ),
+      home: isConnected ? HomePage() : ErrorPage(),
     );
   }
 }
